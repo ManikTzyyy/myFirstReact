@@ -1,7 +1,7 @@
 
 import FormLogin from "../fragments/FormLogin";
 export default function AuthLayout(props) {
-  const {title} = props;
+  const {title , children} = props;
   return (
     <div className="w-full max-w-sm">
       <h1 className="text-3xl font-bold mb-2 text-white">{title}</h1>
@@ -10,7 +10,7 @@ export default function AuthLayout(props) {
       </p>
 
       <form action="">
-        <FormLogin />
+        {children}
       </form>
     </div>
   );
