@@ -4,6 +4,12 @@ import { Button, ButtonWhite } from "../elements/button/index";
 export default function FormRegister() {
   return (
     <>
+    <InputForm
+        label="Full Name"
+        placeHolder="Manik Hengki"
+        name="text"
+        type="text"
+      ></InputForm>
       <InputForm
         label="email"
         placeHolder="example@gmail.com"
