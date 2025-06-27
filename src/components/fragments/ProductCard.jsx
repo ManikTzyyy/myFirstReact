@@ -16,10 +16,10 @@ function Image(props) {
 }
 
 function Body(props) {
-    const {title, children} = props;
+    const {name, children} = props;
   return (
     <div className="p-2">
-      <h2 className="text-base font-bold">{title}</h2>
+      <h2 className="text-base font-bold">{name}</h2>
       <p className="text-xs text-stone-500">{children}</p>
     </div>
   );
