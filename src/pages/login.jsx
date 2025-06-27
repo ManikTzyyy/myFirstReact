@@ -1,5 +1,6 @@
 import AuthLayout from "../components/layout/AuthLayout";
 import FormLogin from "../components/fragments/FormLogin";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   return (
@@ -7,9 +8,9 @@ export default function LoginPage() {
       <FormLogin />
       <p className="text-center text-sm">
         Don't have an account?{" "}
-        <a href="/register" className="text-blue-500">
+        <Link to="/register" className="text-blue-500">
           Sign up here
-        </a>
+        </Link>
       </p>
     </AuthLayout>
   );
