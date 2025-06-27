@@ -23,7 +23,6 @@ export default function FormLogin() {
 
       <Button>Login</Button>
       <div className="py-2"></div>
-      <ButtonWhite>Register</ButtonWhite>
     </>
   );
 }

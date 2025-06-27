@@ -31,7 +31,7 @@ export default function FormRegister() {
 
       <Button>Register</Button>
       <div className="py-2"></div>
-      <ButtonWhite>Sign In</ButtonWhite>
+    
     </>
   );
 }
