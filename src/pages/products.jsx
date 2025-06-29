@@ -13,7 +13,7 @@ const products = [
   {
     id: "2",
     img: "/images/hat.jpg",
-    name: "Hat but more expensive",
+    name: "Hat expensive",
     desc: "Same hat, just different price",
     price: 1310,
   },
@@ -30,13 +30,28 @@ function ProductPage() {
   ]);
 
   const handleAddToCart = (id) => {
-    setCart([
-      ...cart,
-      {
-        id,
-        qty: 1,
-      },
-    ]);
+    if (cart.find((item) => item.id == id)) {
+      setCart(
+        cart.map((item) =>
+          item.id == id
+            ? {
+                ...item,
+                qty: item.qty + 1,
+              }
+            : item
+        )
+      );
+    } else {
+      setCart([...cart, { id, qty: 1 }]);
+    }
+
+    // setCart([
+    //   ...cart,
+    //   {
+    //     id,
+    //     qty: 1,
+    //   },
+    // ]);
   };
 
   const handleLogout = () => {
@@ -73,7 +88,7 @@ function ProductPage() {
         </div>
         <div className="bg-slate-50 p-2 ">
           <h1 className="font-bold text-xl">Cart</h1>
-          <table className="text-left table-auto border-separate border-spacing-x-5">
+          <table className="text-left table-auto border-separate border-spacing-x-5 text-xs">
             <thead>
               <tr>
                 <th>id</th>
