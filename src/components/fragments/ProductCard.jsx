@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../assets/icon";
+import { Button } from "../elements/button";
 
 function ProductCard(props) {
   const { children } = props;
-  return <div className="bg-stone-900 max-w-1/4 text-white">{children}</div>;
+  return (
+    <div className="bg-stone-900 max-h-96  max-w-64 text-white relative">{children}</div>
+  );
 }
 
 function Image(props) {
-    const {src, link} = props;
+  const { src, link } = props;
   return (
     <a href={link}>
       <img src={src} alt="hat" />
@@ -16,7 +19,7 @@ function Image(props) {
 }
 
 function Body(props) {
-    const {name, children} = props;
+  const { name, children } = props;
   return (
     <div className="p-2">
       <h2 className="text-base font-bold">{name}</h2>
@@ -26,15 +29,28 @@ function Body(props) {
 }
 
 function Footer(props) {
-    const {price, link} = props;
+  const { price, handleAddToCart, id } = props;
   return (
     <div className="flex justify-between p-2 ">
       <p>
-        IDR <span>{price}</span>
+        IDR{" "}
+        <span>
+          {price.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+          })}
+        </span>
       </p>
-      <a href={link}>
+      <button
+        className="hover:cursor-pointer"
+        onClick={() => {
+          {
+            handleAddToCart(id);
+          }
+        }}
+      >
         <FontAwesomeIcon icon="cart-shopping" />
-      </a>
+      </button>
     </div>
   );
 }
