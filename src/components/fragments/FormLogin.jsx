@@ -4,7 +4,15 @@ import { Button, ButtonWhite } from "../elements/button/index";
 export default function FormLogin() {
   const handleLogin = (e)=>{
     e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    localStorage.setItem('email' , email);
+    localStorage.setItem('password' , password);
+
+    console.log(`email : ${email}, password : ${password}`)
     console.log('success');
+
+    window.location.href = '/product'
   }
   return (
     <form onSubmit={handleLogin}>
