@@ -7,7 +7,6 @@ export default function InputForm(props) {
     <div className="mb-3">
       <Label htmlFor={name}>{label}</Label>
       <Input
-       
         name={name}
         type={type}
         placeHolder={placeHolder}

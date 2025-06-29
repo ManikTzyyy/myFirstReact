@@ -9,7 +9,7 @@ export default function AuthLayout(props) {
         <p className="font-medium text-blue-950 mb-5">
           Welcome, Please enter your detail
         </p>
-        <form action="">
+        <div>
           {children}
 
           <p className="text-center text-sm">
@@ -29,7 +29,7 @@ export default function AuthLayout(props) {
               </Link>
             )}
           </p>
-        </form>
+        </div>
       </div>
     </div>
   );

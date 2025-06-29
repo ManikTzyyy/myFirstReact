@@ -2,9 +2,13 @@ import InputForm from "../elements/input";
 import { Button, ButtonWhite } from "../elements/button/index";
 
 export default function FormRegister() {
+  const handleRegister = (e)=>{
+    e.preventDefault();
+    console.log('register');
+  }
   return (
-    <>
-    <InputForm
+    <form onSubmit={handleRegister}>
+      <InputForm
         label="Full Name"
         placeHolder="Manik Hengki"
         name="text"
@@ -25,13 +29,12 @@ export default function FormRegister() {
       <InputForm
         label="Confirm Password"
         placeHolder="*******"
-        name="password"
+        name="confirm-password"
         type="password"
       ></InputForm>
 
-      <Button>Register</Button>
+      <Button type='submit'>Register</Button>
       <div className="py-2"></div>
-    
-    </>
+    </form>
   );
 }

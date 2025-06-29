@@ -2,9 +2,13 @@ import InputForm from "../elements/input";
 import { Button, ButtonWhite } from "../elements/button/index";
 
 export default function FormLogin() {
+  const handleLogin = (e)=>{
+    e.preventDefault();
+    console.log('success');
+  }
   return (
-    <>
-      <InputForm
+    <form onSubmit={handleLogin}>
+       <InputForm
         label="email"
         placeHolder="example@gmail.com"
         name="email"
@@ -21,8 +25,8 @@ export default function FormLogin() {
         <a href="">Forgot Password?</a>
       </div>
 
-      <Button>Login</Button>
+      <Button type='submit'>Login</Button>
       <div className="py-2"></div>
-    </>
+    </form>
   );
 }
