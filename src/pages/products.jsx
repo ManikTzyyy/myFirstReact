@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/elements/button";
 import ProductCard from "../components/fragments/ProductCard";
 
 const products = [
   {
-    id: "1",
+    id: 1,
     img: "/images/hat.jpg",
     name: "Hat",
     desc: "Comfort hat with smooth fiber",
     price: 12133,
   },
   {
-    id: "2",
+    id: 2,
     img: "/images/hat.jpg",
     name: "Hat expensive",
     desc: "Same hat, just different price",
@@ -22,12 +22,24 @@ const products = [
 const email = localStorage.getItem("email");
 
 function ProductPage() {
-  const [cart, setCart] = useState([
-    {
-      id: "1",
-      qty: 1,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
+
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      const sum = cart.reduce((acc, item) => {
+        const product = products.find((product) => product.id === item.id);
+        return acc + product.price * item.qty;
+      }, 0);
+      setTotalPrice(sum);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const handleAddToCart = (id) => {
     if (cart.find((item) => item.id == id)) {
@@ -116,6 +128,20 @@ function ProductPage() {
                   </tr>
                 );
               })}
+              <tr>
+                <td colSpan={3}>
+                  <b>Total</b>
+                </td>
+                <td>
+                  <b>
+                    Rp.{" "}
+                    {totalPrice.toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                    })}
+                  </b>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
