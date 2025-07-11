@@ -1,7 +1,8 @@
 import Input from "./input";
 import Label from "./label";
+import { forwardRef } from "react";
 
-export default function InputForm(props) {
+const InputForm = forwardRef((props, ref) => {
   const { label, type, placeHolder, name } = props;
   return (
     <div className="mb-3">
@@ -10,7 +11,10 @@ export default function InputForm(props) {
         name={name}
         type={type}
         placeHolder={placeHolder}
+        ref={ref}
       ></Input>
     </div>
   );
-}
+});
+
+export default InputForm;
