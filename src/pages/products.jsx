@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../components/elements/button";
 import ProductCard from "../components/fragments/ProductCard";
 
@@ -72,6 +72,16 @@ function ProductPage() {
     window.location.href = "/login";
   };
 
+  const totalPriceRef = useRef(null);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      totalPriceRef.current.style.display = "table-row";
+    } else {
+      totalPriceRef.current.style.display = "none";
+    }
+  }, [cart]);
+
   return (
     <div className="flex flex-col">
       <div className="px-2 py-3 flex justify-end items-center bg-amber-300 w-full gap-2">
@@ -115,7 +125,7 @@ function ProductPage() {
                   (product) => item.id === product.id
                 );
                 return (
-                  <tr>
+                  <tr key={product.id}>
                     <td>{product.id}</td>
                     <td>{product.name}</td>
                     <td>
@@ -128,7 +138,7 @@ function ProductPage() {
                   </tr>
                 );
               })}
-              <tr>
+              <tr ref={totalPriceRef}>
                 <td colSpan={3}>
                   <b>Total</b>
                 </td>
