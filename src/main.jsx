@@ -7,12 +7,14 @@ import RegisterPage from "./pages/register.jsx";
 import NotFoundPage from "./pages/404.jsx";
 import ProductCard from "./components/fragments/ProductCard.jsx";
 import ProductPage from "./pages/products.jsx";
+import HomePage from "./pages/home.jsx";
+import APIProductPage from "./pages/productsAPI.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
-    errorElement: <NotFoundPage/>,
+    element: <HomePage />,
+    errorElement: <NotFoundPage />,
   },
   {
     path: "/login",
@@ -23,8 +25,12 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
-    path:'/product',
-    element:<ProductPage/>
+    path: "/product",
+    element: <ProductPage />,
+  },
+  {
+    path :"product-api",
+    element: <APIProductPage/>
   }
 ]);
 

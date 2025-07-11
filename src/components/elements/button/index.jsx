@@ -25,4 +25,13 @@ function ButtonWhite(props) {
   );
 }
 
-export {Button, ButtonWhite};
+const LinkButton = (props)=>{
+  const {children = '...', link} = props
+  return(
+    <a href={link} className=" bg-amber-400 text-white py-2 px-3 rounded-lg hover:bg-amber-500">
+      {children}
+    </a>
+  )
+}
+
+export {Button, ButtonWhite, LinkButton};
