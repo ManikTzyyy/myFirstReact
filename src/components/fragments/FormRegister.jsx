@@ -4,7 +4,7 @@ import { Button, ButtonWhite } from "../elements/button/index";
 export default function FormRegister() {
   const handleRegister = (e)=>{
     e.preventDefault();
-    console.log('register');
+    // console.log('register');
   }
   return (
     <form onSubmit={handleRegister}>

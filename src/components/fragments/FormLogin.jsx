@@ -10,8 +10,8 @@ export default function FormLogin() {
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
 
-    console.log(`email : ${email}, password : ${password}`);
-    console.log("success");
+    // console.log(`email : ${email}, password : ${password}`);
+    // console.log("success");
 
     window.location.href = "/product";
   };
