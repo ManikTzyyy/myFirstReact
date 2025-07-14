@@ -6,8 +6,7 @@ const HomePage = () => {
       <h1 className="text-4xl ">Hello Word</h1>
       <p className="pb-5">Manik touching React</p>
       <div className="flex gap-5">
-        <LinkButton link="/product">Products</LinkButton>
-        <LinkButton link='/product-api'>API Products</LinkButton>
+        <LinkButton link="/products">Products</LinkButton>
       </div>
     </div>
   );
