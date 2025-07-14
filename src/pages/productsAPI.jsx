@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import ProductCard from "../components/fragments/ProductCard";
 import { getProduct } from "../service/product.service";
