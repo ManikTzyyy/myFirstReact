@@ -17,7 +17,7 @@ export default function FormLogin() {
       if (status) {
         localStorage.setItem("token", response);
         console.log("berhasil login");
-        window.location.href = "/product-api";
+        window.location.href = "/products";
       } else {
         console.log("gagal login");
         setFailedLogin(response);

@@ -108,7 +108,7 @@ const APIProductPage = () => {
                 filteredItem.map((product) => {
                   return (
                     <ProductCard key={product.id}>
-                      <ProductCard.Image src={product.image} />
+                      <ProductCard.Image src={product.image} link={`/product/${product.id}`} />
                       <ProductCard.Body name={product.title}>
                         <Truncate>{product.description}</Truncate>
                       </ProductCard.Body>

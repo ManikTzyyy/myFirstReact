@@ -31,9 +31,9 @@ function Body(props) {
   const { name, children } = props;
   return (
     <div className="p-2">
-      <ShowMore lines={1}>
+      <Truncate>
         <h2 className="text-base font-bold">{name}</h2>
-      </ShowMore>
+      </Truncate>
       <p className="text-xs text-stone-500">{children}</p>
     </div>
   );

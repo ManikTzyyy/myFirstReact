@@ -5,10 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login.jsx";
 import RegisterPage from "./pages/register.jsx";
 import NotFoundPage from "./pages/404.jsx";
-import ProductCard from "./components/fragments/ProductCard.jsx";
-import ProductPage from "./pages/products.jsx";
 import HomePage from "./pages/home.jsx";
 import APIProductPage from "./pages/productsAPI.jsx";
+import DetailProduct from "./pages/product.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +24,16 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
+    path: "/products",
+    element: <APIProductPage/>
+  },
+    {
     path: "/product",
     element: <APIProductPage/>
   },
   {
-    path :"product-api",
-    element: <APIProductPage/>
+    path :"product/:id",
+    element: <DetailProduct/>
   }
 ]);
 
