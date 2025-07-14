@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/product",
-    element: <ProductPage />,
+    element: <APIProductPage/>
   },
   {
     path :"product-api",
