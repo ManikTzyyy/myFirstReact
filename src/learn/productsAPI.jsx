@@ -1,11 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import ProductCard from "../components/fragments/ProductCard";
 import { getProduct } from "../service/product.service";
 import { Truncate } from "@re-dev/react-truncate";
 import Input from "../components/elements/input/input";
+import { Button, ButtonWhite } from "../components/elements/button";
 import { useLogin } from "../hooks/useLogin";
+import TableCart from "../components/fragments/TableCart";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../redux/slice/cartSlice";
 import Navbar from "../components/layout/Navbar";
-import { DarkMode } from "../context/DarkMode";
 
 const APIProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -30,22 +33,33 @@ const APIProductPage = () => {
     setFilteredItem(result);
   };
 
-  useLogin();
+
+
+  const dispatch = useDispatch();
+
+  const [clearTrigger, setClearTrigger] = useState(false);
+
+  const handleClearList = () => {
+    localStorage.removeItem("cart-product");
+    dispatch(clearCart());
+    setClearTrigger((prev) => !prev);
+  };
+
+  useLogin()
 
   //darkmode
-  const { isDarkMode } = useContext(DarkMode);
+  
 
   return (
-    <div className={`w-full relative ${isDarkMode?"bg-slate-950 text-white":"bg-white text-black"}`}>
-      <Navbar></Navbar>
+    <div className="w-full relative bg-slate-950 text-white">
+       <Navbar></Navbar>
       <div className="flex flex-col items-center justify-start min-h-screen p-3">
-        <h1 className="pb-3">Online Products with API</h1>
-        <div className="flex">
+        <h1 className="pb-10">Online Products with API</h1>
+        <div className="flex ">
           <div>
-            <div className="px-5 pb-10 ">
-              <p>Search Product Here</p>
+            <div className="px-5">
               <Input
-                placeHolder="input some text"
+                placeHolder="Search Product"
                 value={searchItem}
                 type="text"
                 onChange={handleInputChange}
@@ -73,11 +87,28 @@ const APIProductPage = () => {
                 })}
             </div>
           </div>
-      
+          <div className="w-1/2 border p-2 shrink-0 h-fit ">
+            <div className="flex justify-between">
+              <h1 className="font-bold">Product Cart</h1>
+              <div className="w-fit">
+                <Button
+                  onClick={() => {
+                    handleClearList();
+                  }}
+                >
+                  Clear List
+                </Button>
+              </div>
+            </div>
+
+            <TableCart
+              products={products}
+              clearTrigger={clearTrigger}
+            ></TableCart>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default APIProductPage;

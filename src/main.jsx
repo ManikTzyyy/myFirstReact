@@ -10,7 +10,8 @@ import APIProductPage from "./pages/productsAPI.jsx";
 import DetailProduct from "./pages/product.jsx";
 import store from "./redux/store.js";
 import { Provider } from "react-redux";
-import Navbar from "./components/layout/Navbar.jsx";
+import DarkModeContextProvider from "./context/DarkMode.jsx";
+import ShowCartDialogContextProvider from "./context/ShowCartDialog.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,9 +43,12 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <Navbar></Navbar>
-      <RouterProvider router={router} />
-    </Provider>
+    <DarkModeContextProvider>
+      <ShowCartDialogContextProvider>
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      </ShowCartDialogContextProvider>
+    </DarkModeContextProvider>
   </StrictMode>
 );

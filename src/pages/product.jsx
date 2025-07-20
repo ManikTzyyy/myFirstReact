@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductbyID } from "../service/product.service";
+import Navbar from "../components/layout/Navbar";
+import { DarkMode } from "../context/DarkMode";
 
 const DetailProduct = () => {
   const [product, setProduct] = useState();
@@ -13,10 +15,13 @@ const DetailProduct = () => {
     });
   }, [id]);
 
+  const { isDarkMode } = useContext(DarkMode);
+
   return (
     <section className="relative ">
+       <Navbar></Navbar>
       {product && (
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-0">
+        <div className={`w-full mx-auto px-4 sm:px-6 lg:px-0 ${isDarkMode && "bg-slate-900"}`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2 ">
             <div className="img">
               <div className="img-box h-full max-lg:mx-auto ">
@@ -29,11 +34,11 @@ const DetailProduct = () => {
             </div>
             <div className="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0">
               <div className="data w-full max-w-xl">
-                <h2 className="font-manrope font-bold text-3xl leading-10 text-gray-900 mb-2 capitalize">
+                <h2 className={` font-bold text-3xl leading-10 mb-2 capitalize ${isDarkMode?"text-white":"text-gray-900 "}`}>
                   {product.title}
                 </h2>
                 <div className="flex flex-col sm:flex-row sm:items-center mb-6">
-                  <h6 className="font-manrope font-semibold text-2xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5">
+                  <h6 className={` font-semibold text-2xl leading-9pr-5 sm:border-r border-gray-200 mr-5 ${isDarkMode?"text-white":"text-gray-900 "}`}>
                     $ {product.price}
                   </h6>
                   <div className="flex items-center gap-2">
@@ -63,7 +68,7 @@ const DetailProduct = () => {
                         stroke-linecap="round"
                       />
                     </svg>
-                    <span className="font-normal text-base text-gray-900 ">
+                    <span className={`font-normal text-base ${isDarkMode?"text-white":"text-gray-900 "}`}>
                       {product.category}
                     </span>
                   </li>
@@ -126,7 +131,7 @@ const DetailProduct = () => {
                     </button>
                     <input
                       type="text"
-                      className="font-semibold text-gray-900 cursor-pointer text-lg py-[13px] px-6 w-full sm:max-w-[118px] outline-0 border-y border-gray-400 bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50"
+                      className="font-semibold text-gray-900 cursor-pointer text-lg py-[13px] px-6 w-full sm:max-w-[118px] outline-0 border-y border-gray-400 bg-white placeholder:text-gray-900 text-center hover:bg-gray-50"
                       placeholder="1"
                     />
                     <button className="group py-4 px-6 border border-gray-400 rounded-r-full bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300">
