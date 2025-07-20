@@ -1,14 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../assets/icon";
-import { Button } from "../elements/button";
-import { Truncate, ShowMore } from "@re-dev/react-truncate";
+import { Truncate } from "@re-dev/react-truncate";
+import { addToCart } from "../../redux/slice/cartSlice";
+import { useDispatch } from "react-redux";
 
 function ProductCard(props) {
   const { children } = props;
   return (
-    <div className="bg-stone-900 h-96 w-64 text-white relative">
-      {children}
-    </div>
+    <div className="bg-stone-900 h-96 w-64 text-white relative">{children}</div>
   );
 }
 
@@ -40,7 +39,8 @@ function Body(props) {
 }
 
 function Footer(props) {
-  const { price, handleAddToCart, id, isIDR = true } = props;
+  const { price, id, isIDR = true } = props;
+  const dispatch = useDispatch();
   return (
     <div className="flex justify-between p-2 ">
       <p>
@@ -51,16 +51,19 @@ function Footer(props) {
               currency: "IDR",
             })}
           </span>
-        ) : 
-           `$ ${price}`
-        }
+        ) : (
+          `$ ${price}`
+        )}
       </p>
       <button
         className="hover:cursor-pointer"
+        // onClick={() => {
+        //   {
+        //     handleAddToCart(id);
+        //   }
+        // }}
         onClick={() => {
-          {
-            handleAddToCart(id);
-          }
+          dispatch(addToCart({ id: id, qty: 1 }));
         }}
       >
         <FontAwesomeIcon icon="cart-shopping" />

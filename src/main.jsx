@@ -8,6 +8,9 @@ import NotFoundPage from "./pages/404.jsx";
 import HomePage from "./pages/home.jsx";
 import APIProductPage from "./pages/productsAPI.jsx";
 import DetailProduct from "./pages/product.jsx";
+import store from "./redux/store.js";
+import { Provider } from "react-redux";
+import Navbar from "./components/layout/Navbar.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,20 +28,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/products",
-    element: <APIProductPage/>
-  },
-    {
-    path: "/product",
-    element: <APIProductPage/>
+    element: <APIProductPage />,
   },
   {
-    path :"product/:id",
-    element: <DetailProduct/>
-  }
+    path: "/product",
+    element: <APIProductPage />,
+  },
+  {
+    path: "product/:id",
+    element: <DetailProduct />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <Navbar></Navbar>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
