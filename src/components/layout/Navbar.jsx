@@ -8,6 +8,7 @@ import "../../assets/icon";
 import { getProduct } from "../../service/product.service";
 import DialogCart from "../fragments/DialogCart";
 import { ShowCartDialog } from "../../context/ShowCartDialog";
+import { useTotalPrice } from "../../context/TotalPriceContext";
 
 const Navbar = () => {
   const handleLogout = () => {
@@ -25,6 +26,8 @@ const Navbar = () => {
   }, [cart]);
 
   const [totalCart, setTotalCart] = useState(0);
+
+  const { total } = useTotalPrice();
 
   const userName = useLogin();
 
@@ -48,6 +51,9 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center justify-center gap-5 text-xs font-bold text-white">
+        <p className={`${isDarkMode ? "text-white" : "text-black"} `}>
+          Total Price : $ {total}{" "}
+        </p>
         <button
           className="w-8 h-8 bg-black rounded-full text-lg hover:cursor-pointer relative flex justify-center items-center"
           onClick={() => {

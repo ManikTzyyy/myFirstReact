@@ -12,6 +12,7 @@ import store from "./redux/store.js";
 import { Provider } from "react-redux";
 import DarkModeContextProvider from "./context/DarkMode.jsx";
 import ShowCartDialogContextProvider from "./context/ShowCartDialog.jsx";
+import { TotalPriceProvider } from "./context/TotalPriceContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,9 @@ createRoot(document.getElementById("root")).render(
     <DarkModeContextProvider>
       <ShowCartDialogContextProvider>
         <Provider store={store}>
-          <RouterProvider router={router} />
+          <TotalPriceProvider>
+            <RouterProvider router={router} />
+          </TotalPriceProvider>
         </Provider>
       </ShowCartDialogContextProvider>
     </DarkModeContextProvider>

@@ -1,12 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import {
+  useTotalPrice,
+  useTotalPriceDispatch,
+} from "../../context/TotalPriceContext";
 
 const TableCart = (props) => {
   const { products, clearTrigger } = props;
   const cart = useSelector((state) => {
     return state.cart.data;
   });
-  const [totalPrice, setTotalPrice] = useState(0);
+  
+
+  const dispatch = useTotalPriceDispatch();
+  const { total } = useTotalPrice();
 
   useEffect(() => {
     if (products.length > 0) {
@@ -15,15 +22,25 @@ const TableCart = (props) => {
           const product = products.find((product) => product.id === item.id);
           return acc + product.price * item.qty;
         }, 0);
-        setTotalPrice(sum);
+        dispatch({
+          type: "UPDATE",
+          payload: {
+            total: sum,
+          },
+        });
         localStorage.setItem("cart-product", JSON.stringify(cart));
       }
     }
-  }, [cart, products]);
+  }, [cart, dispatch, products]);
 
   useEffect(() => {
-    setTotalPrice(0);
-  }, [clearTrigger]);
+    dispatch({
+      type: "UPDATE",
+      payload: {
+        total: 0,
+      },
+    });
+  }, [clearTrigger, dispatch]);
 
   return (
     <table className="text-left table-auto border-separate border-spacing-x-5 text-xs w-full">
@@ -56,7 +73,7 @@ const TableCart = (props) => {
           })}
         <tr className="font-bold">
           <td colSpan={4}>Total</td>
-          <td>$ {totalPrice}</td>
+          <td>$ {total}</td>
         </tr>
       </tbody>
     </table>
