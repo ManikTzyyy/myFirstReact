@@ -11,7 +11,7 @@ export const useLogin = () => {
       setUserName(res.user);
     } else {
       console.log("please login first!");
-      window.location.href = "/login";
+      // window.location.href = "/login";
     }
   }, [userToken]);
 

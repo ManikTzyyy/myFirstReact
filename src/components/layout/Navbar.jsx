@@ -44,6 +44,8 @@ const Navbar = () => {
     });
   }, []);
 
+  const userToken = localStorage.getItem("token");
+
   return (
     <div
       className={`w-full shadow  p-3 flex justify-between items-center text-black gap-5 sticky top-0 left-0 z-50  ${
@@ -75,8 +77,14 @@ const Navbar = () => {
         </button>
       </div>
       <div className="flex gap-2 items-center justify-center">
-        <h1 className="shrink-0">Hallo, {userName}</h1>
-        <Button onClick={handleLogout}>Logout</Button>
+        {userToken ? (
+          <>
+            <h1 className="shrink-0">Hallo, {userName}</h1>
+            <Button onClick={handleLogout}>Logout</Button>
+          </>
+        ) : (
+          <Button onClick={handleLogout}>Login</Button>
+        )}
       </div>
       <DialogCart products={products}></DialogCart>
     </div>

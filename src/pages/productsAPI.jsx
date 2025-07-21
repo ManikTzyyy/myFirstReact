@@ -30,7 +30,7 @@ const APIProductPage = () => {
     setFilteredItem(result);
   };
 
-  useLogin();
+  // useLogin();
 
   //darkmode
   const { isDarkMode } = useContext(DarkMode);
